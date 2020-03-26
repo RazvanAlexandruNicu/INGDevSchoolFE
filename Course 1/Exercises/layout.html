@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>My layout</title>
+        <style>
+            html {
+                height:100%;
+            }
+
+            body {
+                display:flex;
+                flex-direction: column;
+                height:100%;
+                margin:0;
+            }
+
+            header {
+                background: gold;
+            }
+
+            footer {
+                background: tomato;
+            }
+
+            aside {
+                background: deepskyblue;
+            }
+
+            main {
+                background: lightgreen;
+                display:flex;
+                flex: 1;
+            }
+
+
+
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>My website</h1>
+            <p> My awesome website where you'll find useful information</p>
+            <form>
+                <label for="search">Search this website</label>
+                <input type="search" id="search" name="q" placeholder="Search me" autofocus>
+                <button>GO</button>
+            </form>
+        </header>
+
+        <main>
+            <aside>
+                <nav>
+                    My menu
+                </nav>
+            </aside>
+            <div id="content">
+                Some content
+            </div>
+        </main>
+
+        <footer>
+            Copyright &copy; 2020
+        </footer>
+    </body>
