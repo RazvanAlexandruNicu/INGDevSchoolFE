@@ -1,0 +1,50 @@
+h1 {
+    color: red !important;
+}
+/*
+.firstel {
+    font-size: x-large;
+}
+.others {
+    font-size: medium;
+}*/
+
+
+ul li:first-child {
+    font-size: x-large;
+}
+
+ul li {
+    font-size: large;
+}
+
+h1 {
+    color:aquamarine !important;
+}
+
+a:visited{
+    color: deeppink;
+}
+
+a:hover {
+    font-size: x-large;
+}
+
+a:active {
+    color: aqua;
+}
+
+#magic #hide {
+    display:none;
+    background:palevioletred;
+    padding:20px;
+}
+
+#magic:hover #hide {
+    display:block;
+}
+
+ul li:nth-child(1)::first-letter {
+    color:sandybrown;
+    font-size: xx-large;
+}
