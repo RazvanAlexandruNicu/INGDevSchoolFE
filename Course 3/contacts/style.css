@@ -1,0 +1,16 @@
+body {
+    background: lightblue;
+    color: darkslateblue;
+}
+
+main {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+main h1 {
+    margin-bottom: 10%;
+    border-bottom: 1px solid darkorange;
+    text-align: center;
+}
