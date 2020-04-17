@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Contact management</title>
+    <meta charset="utf-8" />
+   <!-- <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#dddddd" />
+    <link rel="manifest" href="manifest.json" />
+   -->
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <script type="module">
+      import { init } from './index.js';
+      init();
+    </script>
+  </head>
+
+  <body>
+    <header>
+      <h1>My contacts</h1>
+    </header>
+    <main>
+      <form id="form-add">
+        <input type="text" name="name" id="name" placeholder="Name" required />
+        <input type="email" name="email" id="email" placeholder="E-mail" />
+        <input type="tel" name="phone" id="phone" placeholder="Phone" />
+        <button type="submit">Add</button>
+      </form>
+  
+      <form id="form-edit" hidden>
+        <ul id="list"></ul>
+        <button type="submit" name="delete" disabled>Delete selected contacts</button>
+      </form>
+    </main>
+    
+  </body>
+</html>
