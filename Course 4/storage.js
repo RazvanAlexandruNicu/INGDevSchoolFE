@@ -26,7 +26,7 @@ export function remove(contact) {
 export function edit(values, id) {
   const contacts = read();
   const index = contacts.findIndex(element => element.id === id);
-  if( index !== -1) {
+  if (index !== -1) {
     contacts[index]['name'] = values[0];
     contacts[index]['email'] = values[1];
     contacts[index]['phone'] = values[2];

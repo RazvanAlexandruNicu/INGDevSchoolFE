@@ -654,54 +654,6 @@ eval("var logLevel = \"info\";\n\nfunction dummy() {}\n\nfunction shouldLog(leve
 
 /***/ }),
 
-/***/ "./src/AppMain.js":
-/*!************************!*\
-  !*** ./src/AppMain.js ***!
-  \************************/
-/*! exports provided: AppMain */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"AppMain\", function() { return AppMain; });\n/* harmony import */ var lit_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lit-element */ \"./node_modules/lit-element/lit-element.js\");\n/* harmony import */ var _storage_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./storage.js */ \"./src/storage.js\");\n/* harmony import */ var _InputForm_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./InputForm.js */ \"./src/InputForm.js\");\n/* harmony import */ var _Listing_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Listing.js */ \"./src/Listing.js\");\n\r\n\r\n\r\n\r\n\r\n\r\nclass AppMain extends lit_element__WEBPACK_IMPORTED_MODULE_0__[\"LitElement\"] {\r\n    static get properties() {\r\n        return {\r\n            tasks: { type: Object},\r\n            value: { type: String}\r\n        };\r\n    }\r\n\r\n    static get styles() {\r\n        return lit_element__WEBPACK_IMPORTED_MODULE_0__[\"css\"]`\r\n            :host {\r\n                background: dodgerblue;\r\n                color:white;\r\n                padding: 2rem;\r\n                display: flex;\r\n                flex-direction:column;  \r\n            }\r\n        `;\r\n    }\r\n\r\n    constructor() {\r\n        super();\r\n        this.tasks = Object(_storage_js__WEBPACK_IMPORTED_MODULE_1__[\"read\"])();\r\n        this.value = JSON.stringify(this.tasks);\r\n    }\r\n\r\n    render() {\r\n        return lit_element__WEBPACK_IMPORTED_MODULE_0__[\"html\"]`\r\n            <input-form @form-submitted=\"${this._onFormChange}\"></input-form>\r\n            <listing-item value=${this.value}></listing-item>\r\n        `;\r\n    }\r\n\r\n    _onFormChange(event) {\r\n        const data = event.detail;\r\n        Object(_storage_js__WEBPACK_IMPORTED_MODULE_1__[\"append\"])(data);\r\n        this.tasks.push(data)\r\n        this.value = JSON.stringify(this.tasks);\r\n    }\r\n\r\n}\r\n\n\n//# sourceURL=webpack:///./src/AppMain.js?");
-
-/***/ }),
-
-/***/ "./src/InputForm.js":
-/*!**************************!*\
-  !*** ./src/InputForm.js ***!
-  \**************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var lit_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lit-element */ \"./node_modules/lit-element/lit-element.js\");\n\r\n\r\n\r\nclass InputForm extends lit_element__WEBPACK_IMPORTED_MODULE_0__[\"LitElement\"] {\r\n    static get styles() {\r\n        return lit_element__WEBPACK_IMPORTED_MODULE_0__[\"css\"]`\r\n            :host {\r\n                background: yellow;\r\n                color:white;\r\n                padding: 2rem;\r\n            }\r\n        `;\r\n    }\r\n    static get properties() {\r\n        return {\r\n            title: { type: String },\r\n        };\r\n    }\r\n\r\n    render() {\r\n        return lit_element__WEBPACK_IMPORTED_MODULE_0__[\"html\"]`\r\n            <form @submit=\"${this._onSubmit}\">\r\n                <input name=\"todo\" type=\"text\" placeholder=\"TODO activity\">\r\n                <button>Add to TODO list</button>\r\n            </form>\r\n        `;\r\n    }\r\n\r\n    _onSubmit(event) {\r\n        event.preventDefault();\r\n        const fd = new FormData(event.target);\r\n        fd.set('id', Date.now());\r\n        const data = Object.fromEntries(fd);\r\n        this.dispatchEvent(new CustomEvent('form-submitted', { detail: data}));\r\n    }\r\n}\r\n\r\nwindow.customElements.define('input-form', InputForm);\n\n//# sourceURL=webpack:///./src/InputForm.js?");
-
-/***/ }),
-
-/***/ "./src/Item.js":
-/*!*********************!*\
-  !*** ./src/Item.js ***!
-  \*********************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var lit_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lit-element */ \"./node_modules/lit-element/lit-element.js\");\n/* harmony import */ var _Item_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Item.js */ \"./src/Item.js\");\n\r\n\r\n\r\n\r\nclass Item extends lit_element__WEBPACK_IMPORTED_MODULE_0__[\"LitElement\"] {\r\n    render() {\r\n        return lit_element__WEBPACK_IMPORTED_MODULE_0__[\"html\"]`\r\n            ${this.name}\r\n        `;\r\n    }\r\n\r\n    static get properties() {\r\n        return {\r\n            id: { type: String },\r\n            name: { type: String}\r\n        };\r\n    }\r\n}\r\n\r\nwindow.customElements.define('custom-item', Item);\n\n//# sourceURL=webpack:///./src/Item.js?");
-
-/***/ }),
-
-/***/ "./src/Listing.js":
-/*!************************!*\
-  !*** ./src/Listing.js ***!
-  \************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var lit_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lit-element */ \"./node_modules/lit-element/lit-element.js\");\n/* harmony import */ var _storage_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./storage.js */ \"./src/storage.js\");\n/* harmony import */ var _Item_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Item.js */ \"./src/Item.js\");\n\r\n\r\n\r\n\r\nclass Listing extends lit_element__WEBPACK_IMPORTED_MODULE_0__[\"LitElement\"] {\r\n    static get styles() {\r\n        return lit_element__WEBPACK_IMPORTED_MODULE_0__[\"css\"]`\r\n            :host {\r\n                background: green;\r\n                color:white;\r\n                padding: 2rem;\r\n                display:flex;\r\n                flex-direction:column;\r\n            }\r\n            custom-item {\r\n                background-color:red;\r\n                padding:0.5em;\r\n                margin: 0.5em;\r\n\r\n            }\r\n        `;\r\n    }\r\n    static get properties() {\r\n        return {\r\n            tasks: { type: Object },\r\n            value: { type: String}\r\n        };\r\n    }\r\n\r\n    constructor() {\r\n        super();\r\n        this.tasks = Object(_storage_js__WEBPACK_IMPORTED_MODULE_1__[\"read\"])();\r\n        this.value = JSON.stringify(this.tasks);\r\n    }\r\n\r\n    render() {\r\n        const data = JSON.parse(this.value);\r\n        console.log(data);\r\n\r\n        return lit_element__WEBPACK_IMPORTED_MODULE_0__[\"html\"]`\r\n           ${JSON.parse(this.value).map(i => lit_element__WEBPACK_IMPORTED_MODULE_0__[\"html\"]`<custom-item id=${i.id} name=${i.todo}></custom-item>`)}\r\n        `;\r\n    }\r\n\r\n\r\n}\r\n\r\nwindow.customElements.define('listing-item', Listing);\n\n//# sourceURL=webpack:///./src/Listing.js?");
-
-/***/ }),
-
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
@@ -710,7 +662,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var lit_
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _AppMain__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AppMain */ \"./src/AppMain.js\");\n\r\nwindow.customElements.define('app-main', _AppMain__WEBPACK_IMPORTED_MODULE_0__[\"AppMain\"]);\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _todoMain_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./todoMain.js */ \"./src/todoMain.js\");\n\r\nwindow.customElements.define('todo-main', _todoMain_js__WEBPACK_IMPORTED_MODULE_0__[\"todoMain\"]);\r\n\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 
@@ -718,11 +670,59 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _App
 /*!************************!*\
   !*** ./src/storage.js ***!
   \************************/
-/*! exports provided: read, append */
+/*! exports provided: read, append, remove */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"read\", function() { return read; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"append\", function() { return append; });\nfunction read() {\r\n    const data = window.localStorage.getItem('todo-items');\r\n    return data === null ? [] : JSON.parse(data);\r\n}\r\n\r\nfunction write(contacts) {\r\n    const data = JSON.stringify(contacts);\r\n    window.localStorage.setItem('todo-items', data);\r\n}\r\n\r\nfunction append(contact) {\r\n    const contacts = read();\r\n    contacts.push(contact);\r\n    write(contacts);\r\n}\r\n\r\n\r\n\n\n//# sourceURL=webpack:///./src/storage.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"read\", function() { return read; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"append\", function() { return append; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"remove\", function() { return remove; });\nfunction read() {\r\n  const data = window.localStorage.getItem('todo-items');\r\n  return data === null ? [] : JSON.parse(data);\r\n}\r\n\r\nfunction write(contacts) {\r\n  const data = JSON.stringify(contacts);\r\n  window.localStorage.setItem('todo-items', data);\r\n}\r\n\r\nfunction append(todoItem) {\r\n  const todoItems = read();\r\n  todoItems.push(todoItem);\r\n  write(todoItems);\r\n}\r\n\r\nfunction remove(id) {\r\n  const todoItems = read();\r\n  const index = todoItems.findIndex(element => element.id === id);\r\n  if (index !== -1) {\r\n    todoItems.splice(index, 1);\r\n    write(todoItems);\r\n  }\r\n}\r\n\n\n//# sourceURL=webpack:///./src/storage.js?");
+
+/***/ }),
+
+/***/ "./src/todoForm.js":
+/*!*************************!*\
+  !*** ./src/todoForm.js ***!
+  \*************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var lit_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lit-element */ \"./node_modules/lit-element/lit-element.js\");\n\r\n\r\nclass todoForm extends lit_element__WEBPACK_IMPORTED_MODULE_0__[\"LitElement\"] {\r\n  static get styles() {\r\n    return lit_element__WEBPACK_IMPORTED_MODULE_0__[\"css\"]`\r\n      :host {\r\n        background: #d6e5e3;\r\n        color: #517664;\r\n        padding: 2rem;\r\n      }\r\n\r\n      button {\r\n        padding: 1em;\r\n        margin-left: 1em;\r\n        transition: 0.3s all;\r\n        color: #517664;\r\n        border: 1px solid darkgreen;\r\n        border-radius: 1em;\r\n      }\r\n\r\n      button:hover {\r\n        background: #9fd8cb;\r\n        color: #2d3319;\r\n        border-radius: 2em;\r\n      }\r\n    `;\r\n  }\r\n  static get properties() {\r\n    return {\r\n      title: { type: String },\r\n    };\r\n  }\r\n\r\n  render() {\r\n    return lit_element__WEBPACK_IMPORTED_MODULE_0__[\"html\"]`\r\n      <form @submit=\"${this._onSubmit}\">\r\n        <input name=\"todo\" type=\"text\" placeholder=\"Insert Todo activity\" />\r\n        <select name=\"type\">\r\n          <option> University </option>\r\n          <option selected=\"selected\"> Free time </option>\r\n          <option> Hobbies </option>\r\n        </select>\r\n        <button>Add to TODO list</button>\r\n      </form>\r\n    `;\r\n  }\r\n\r\n  _onSubmit(event) {\r\n    event.preventDefault();\r\n    const fd = new FormData(event.target);\r\n    fd.set('id', Date.now());\r\n    const data = Object.fromEntries(fd);\r\n    this.dispatchEvent(new CustomEvent('form-submitted', { detail: data }));\r\n  }\r\n}\r\n\r\nwindow.customElements.define('todo-form', todoForm);\r\n\n\n//# sourceURL=webpack:///./src/todoForm.js?");
+
+/***/ }),
+
+/***/ "./src/todoItem.js":
+/*!*************************!*\
+  !*** ./src/todoItem.js ***!
+  \*************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var lit_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lit-element */ \"./node_modules/lit-element/lit-element.js\");\n\r\n\r\nclass todoItem extends lit_element__WEBPACK_IMPORTED_MODULE_0__[\"LitElement\"] {\r\n  static get properties() {\r\n    return {\r\n      type: { type: String },\r\n      content: { type: String },\r\n    };\r\n  }\r\n\r\n  render() {\r\n    return lit_element__WEBPACK_IMPORTED_MODULE_0__[\"html\"]`\r\n      ${this.content}\r\n      <span style=\"font-size:0.7em;\">(${this.type})</span>\r\n    `;\r\n  }\r\n\r\n  //   hashCode(str) {\r\n  //     // java String#hashCode\r\n  //     var hash = 0;\r\n  //     for (var i = 0; i < str.length; i++) {\r\n  //       hash = str.charCodeAt(i) + ((hash << 5) - hash);\r\n  //     }\r\n  //     return hash;\r\n  //   }\r\n\r\n  //   intToRGB(i) {\r\n  //     var c = (i & 0x00ffffff).toString(16).toUpperCase();\r\n\r\n  //     return '00000'.substring(0, 6 - c.length) + c;\r\n  //   }\r\n\r\n  updated(changedProperties) {\r\n    // University - turquoise\r\n    // Hobbies -  cherry\r\n    // Free time - light orange\r\n\r\n    if (changedProperties.has('type')) {\r\n      switch (this.type) {\r\n        case 'University':\r\n          this.style.backgroundColor = '#3AAFB9';\r\n          this.style.color = 'white';\r\n          break;\r\n        case 'Hobbies':\r\n          this.style.backgroundColor = '#A60067';\r\n          this.style.color = 'white';\r\n          break;\r\n        case 'Free time':\r\n          this.style.backgroundColor = '#FFD29D';\r\n          this.style.color = '#093A3E';\r\n          break;\r\n        default:\r\n          this.style.backgroundColor = '#918450';\r\n      }\r\n    }\r\n\r\n    // if (changedProperties.has('type')) {\r\n    //   this.style.backgroundColor = '#' + this.intToRGB(this.hashCode(this.type));\r\n    //   this.style.color = 'white';\r\n    //   console.log(this.intToRGB(this.hashCode(this.type)));\r\n    // }\r\n  }\r\n}\r\n\r\nwindow.customElements.define('todo-item', todoItem);\r\n\n\n//# sourceURL=webpack:///./src/todoItem.js?");
+
+/***/ }),
+
+/***/ "./src/todoList.js":
+/*!*************************!*\
+  !*** ./src/todoList.js ***!
+  \*************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var lit_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lit-element */ \"./node_modules/lit-element/lit-element.js\");\n/* harmony import */ var _storage_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./storage.js */ \"./src/storage.js\");\n/* harmony import */ var _todoItem_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./todoItem.js */ \"./src/todoItem.js\");\n\r\n\r\n\r\n\r\nclass todoList extends lit_element__WEBPACK_IMPORTED_MODULE_0__[\"LitElement\"] {\r\n  static get styles() {\r\n    return lit_element__WEBPACK_IMPORTED_MODULE_0__[\"css\"]`\r\n      :host {\r\n        background: #cacfd6;\r\n        color: white;\r\n        padding: 2rem;\r\n        display: flex;\r\n        flex-direction: column;\r\n      }\r\n      todo-item {\r\n        color: #517664;\r\n        padding: 0.5rem;\r\n        margin: 0.5em;\r\n        width: 70%;\r\n        display: inline-block;\r\n        border: 1px solid darkblue;\r\n      }\r\n      button {\r\n        padding: 0.5rem 1rem 0.5rem 1rem;\r\n        margin-left: 1em;\r\n        transition: 0.3s all;\r\n        color: #517664;\r\n        border: 1px solid darkgreen;\r\n        border-radius: 1em;\r\n      }\r\n\r\n      button:hover {\r\n        background: #9fd8cb;\r\n        color: #2d3319;\r\n        border-radius: 2em;\r\n      }\r\n    `;\r\n  }\r\n  static get properties() {\r\n    return {\r\n      tasks: { type: Object },\r\n      value: { type: String },\r\n    };\r\n  }\r\n\r\n  constructor() {\r\n    super();\r\n    this.tasks = Object(_storage_js__WEBPACK_IMPORTED_MODULE_1__[\"read\"])();\r\n    this.value = JSON.stringify(this.tasks);\r\n  }\r\n\r\n  render() {\r\n    const data = JSON.parse(this.value);\r\n    console.log(data);\r\n\r\n    return lit_element__WEBPACK_IMPORTED_MODULE_0__[\"html\"]`\r\n      ${JSON.parse(this.value).map(\r\n        i => lit_element__WEBPACK_IMPORTED_MODULE_0__[\"html\"]`<p>\r\n          <todo-item type=${i.type} content=${i.todo}></todo-item>\r\n          <button @click=${this.deleteItem} name=\"${i.id}\">Delete</button>\r\n        </p>`\r\n      )}\r\n    `;\r\n  }\r\n\r\n  deleteItem(event) {\r\n    const entryId = event.target.name;\r\n    console.log(entryId);\r\n    Object(_storage_js__WEBPACK_IMPORTED_MODULE_1__[\"remove\"])(entryId);\r\n    this.dispatchEvent(new CustomEvent('item-deleted', { detail: this.tasks }));\r\n  }\r\n}\r\n\r\nwindow.customElements.define('todo-list', todoList);\r\n\n\n//# sourceURL=webpack:///./src/todoList.js?");
+
+/***/ }),
+
+/***/ "./src/todoMain.js":
+/*!*************************!*\
+  !*** ./src/todoMain.js ***!
+  \*************************/
+/*! exports provided: todoMain */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"todoMain\", function() { return todoMain; });\n/* harmony import */ var lit_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lit-element */ \"./node_modules/lit-element/lit-element.js\");\n/* harmony import */ var _storage_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./storage.js */ \"./src/storage.js\");\n/* harmony import */ var _todoForm_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./todoForm.js */ \"./src/todoForm.js\");\n/* harmony import */ var _todoList_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./todoList.js */ \"./src/todoList.js\");\n\r\n\r\n\r\n\r\n\r\n\r\nclass todoMain extends lit_element__WEBPACK_IMPORTED_MODULE_0__[\"LitElement\"] {\r\n  static get properties() {\r\n    return {\r\n      tasks: { type: Object },\r\n      value: { type: String },\r\n    };\r\n  }\r\n\r\n  static get styles() {\r\n    return lit_element__WEBPACK_IMPORTED_MODULE_0__[\"css\"]`\r\n      :host {\r\n        background: #9fd8cb;\r\n        width: 50%;\r\n        margin-left: auto;\r\n        margin-right: auto;\r\n        margin-top: 5rem;\r\n        color: white;\r\n        padding: 2rem;\r\n        display: flex;\r\n        flex-direction: column;\r\n        box-shadow: 4px 7px 36px 0px rgba(0, 0, 0, 0.75);\r\n      }\r\n\r\n      todo-form {\r\n        border-bottom: 1px solid darkblue;\r\n      }\r\n    `;\r\n  }\r\n\r\n  constructor() {\r\n    super();\r\n    this.tasks = Object(_storage_js__WEBPACK_IMPORTED_MODULE_1__[\"read\"])();\r\n    this.value = JSON.stringify(this.tasks);\r\n  }\r\n\r\n  render() {\r\n    return lit_element__WEBPACK_IMPORTED_MODULE_0__[\"html\"]`\r\n      <todo-form @form-submitted=\"${this._onFormChange}\"></todo-form>\r\n      <todo-list @item-deleted=\"${this._onItemDeleted}\" value=${this.value}></todo-list>\r\n    `;\r\n  }\r\n\r\n  _onFormChange(event) {\r\n    const data = event.detail;\r\n    Object(_storage_js__WEBPACK_IMPORTED_MODULE_1__[\"append\"])(data);\r\n    this.tasks.push(data);\r\n    this.value = JSON.stringify(this.tasks);\r\n  }\r\n\r\n  _onItemDeleted(event) {\r\n    this.tasks = Object(_storage_js__WEBPACK_IMPORTED_MODULE_1__[\"read\"])();\r\n    this.value = JSON.stringify(this.tasks);\r\n  }\r\n}\r\n\n\n//# sourceURL=webpack:///./src/todoMain.js?");
 
 /***/ }),
 
@@ -733,7 +733,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("__webpack_require__(/*! H:\\DEV SCHOOL ING\\FRONTEND\\Curs 6\\todo\\node_modules\\webpack-dev-server\\client\\index.js?http://localhost:8080 */\"./node_modules/webpack-dev-server/client/index.js?http://localhost:8080\");\nmodule.exports = __webpack_require__(/*! ./src/index.js */\"./src/index.js\");\n\n\n//# sourceURL=webpack:///multi_(webpack)-dev-server/client?");
+eval("__webpack_require__(/*! H:\\DEV SCHOOL ING\\FRONTEND\\INGDevSchoolFE\\Course 6 homework\\todo\\node_modules\\webpack-dev-server\\client\\index.js?http://localhost:8080 */\"./node_modules/webpack-dev-server/client/index.js?http://localhost:8080\");\nmodule.exports = __webpack_require__(/*! ./src/index.js */\"./src/index.js\");\n\n\n//# sourceURL=webpack:///multi_(webpack)-dev-server/client?");
 
 /***/ })
 
